@@ -42,12 +42,12 @@ func (api *Client) Login(username string, password string) (string, error) {
 
 	ticket, err := getTicket(username, password, jdata, cookies)
 	if err != nil {
-		return err
+		return "", err
 	}
 
-	ticket, err = authenticate(ticket)
+	token, err := authenticate(ticket)
 	if err != nil {
-		return err
+		return "", err
 	}
 	return token, nil
 }
@@ -157,7 +157,10 @@ func getJdata() (jData, []*http.Cookie, error) {
 	}
 
 	var jd jData
-	json.Unmarshal(body, &jd)
+	err = json.Unmarshal(body, &jd)
+	if err != nil {
+		return jData{}, nil, err
+	}
 
 	return jd, resp.Cookies(), nil
 }

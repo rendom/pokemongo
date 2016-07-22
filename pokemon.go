@@ -11,6 +11,7 @@ func New() *Client {
 
 // Authenticate to PTC
 func (api *Client) Authenticate(username string, password string) error {
-	api.token, err = p.Login(username, password)
+	var err error
+	api.token, err = api.Login(username, password)
 	return err
 }
