@@ -29,8 +29,8 @@ const (
 
 // jData contains some tokens?
 type jData struct {
-	Lt         string `json:"lt"`
-	Exectution string `json:"execution"`
+	Lt        string `json:"lt"`
+	Execution string `json:"execution"`
 }
 
 // Login will auhtenticate to Pokemon Traingin Club and return token on success
@@ -55,7 +55,7 @@ func (api *Client) Login(username string, password string) (string, error) {
 func getTicket(username string, password string, jd jData, cookies []*http.Cookie) (string, error) {
 	pf := url.Values{}
 	pf.Add("lt", jd.Lt)
-	pf.Add("execution", jd.Exectution)
+	pf.Add("execution", jd.Execution)
 	pf.Add("_eventId", "submit")
 	pf.Add("username", username)
 	pf.Add("password", password)
