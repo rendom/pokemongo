@@ -15,3 +15,7 @@ func (api *Client) Authenticate(username string, password string) error {
 	api.token, err = api.Login(username, password)
 	return err
 }
+
+func (api *Client) GetToken() string {
+	return api.token
+}
